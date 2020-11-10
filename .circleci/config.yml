@@ -145,7 +145,7 @@ jobs:
               linux)
                 if [ 15 != 11 ]; then
                   sudo apt install --yes openjdk-15-jdk
-                  update-alternatives --set java /usr/lib/jvm/java-15-openjdk-amd64/bin/java
+                  sudo update-alternatives --set java /usr/lib/jvm/java-15-openjdk-amd64/bin/java
                 fi;;
               macos)
                 if [ 15 != 11 ]; then
