@@ -36,7 +36,7 @@ jobs:
           name: Downloading Isabelle 2019 (if needed)
           shell: bash
           command: |
-            if ! [ -e "~/install/Isabelle2019" ]; then
+            if ! [ -e ~/install/Isabelle2019 ]; then
               mkdir -p ~/install
               case linux in
                 windows)
@@ -155,7 +155,7 @@ jobs:
 
             # Check if we have the right Java version
             java -version
-            java -version 2>&1 | grep -F 'version "15.' -q
+            java -version 2>&1 | grep 'version "15\b' -q
 
       - run:
           name: Running tests

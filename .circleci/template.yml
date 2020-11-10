@@ -34,7 +34,7 @@ jobs:
           name: Downloading Isabelle @{isabelle} (if needed)
           shell: bash
           command: |
-            if ! [ -e "@{isabellehome}" ]; then
+            if ! [ -e @{isabellehome} ]; then
               mkdir -p ~/install
               case @{os} in
                 windows)
@@ -153,7 +153,7 @@ jobs:
 
             # Check if we have the right Java version
             java -version
-            java -version 2>&1 | grep -F 'version "@{jdkversionprefix}.' -q
+            java -version 2>&1 | grep 'version "@{jdkversionprefix}\b' -q
 
       - run:
           name: Running tests
