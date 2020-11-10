@@ -29,12 +29,12 @@ jobs:
       # Download and cache Isabelle
       - restore_cache:
           keys:
-            - v2-isabelle-@{isabelle}-@{os}
+            - v3-isabelle-@{isabelle}-@{os}
       - run:
           name: Downloading Isabelle @{isabelle} (if needed)
           shell: bash
           command: |
-            if ! [ -e "$HOME/install/Isabelle@{isabelle}" ]; then
+            if ! [ -e "@{isabellehome}" ]; then
               mkdir -p ~/install
               case @{os} in
                 windows)
@@ -48,7 +48,7 @@ jobs:
       - save_cache:
           paths:
             - @{isabellehome}
-          key: v2-isabelle-@{isabelle}-@{os}
+          key: v3-isabelle-@{isabelle}-@{os}
 
       # Download and cache AFP
       - restore_cache:
@@ -152,7 +152,7 @@ jobs:
 
             # Check if we have the right Java version
             java -version
-            java -version |& grep -F 'version "@{jdkversionprefix}".' -q
+            java -version 2>&1 | grep -F 'version "@{jdkversionprefix}.' -q
 
       - run:
           name: Running tests
