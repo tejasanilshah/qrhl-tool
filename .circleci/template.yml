@@ -142,7 +142,7 @@ jobs:
             case @{os} in
               linux)
                 if [ @{jdk} != 11 ]; then
-                  apt install --yes openjdk-@{jdk}-jdk
+                  sudo apt install --yes openjdk-@{jdk}-jdk
                   update-alternatives --set java /usr/lib/jvm/java-@{jdk}-openjdk-amd64/bin/java
                 fi;;
               macos)
