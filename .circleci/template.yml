@@ -24,7 +24,7 @@ jobs:
       - run:
           name: "Pull Submodules"
           command: |
-            git submodule update --init --recursive
+            git submodule update --init --recursive --depth 1
 
       # Download and cache Isabelle
       - restore_cache:
@@ -78,10 +78,11 @@ jobs:
           shell: bash
           command: |
             find isabelle-thys -type f | xargs sha1sum ROOTS > ~/isabelle-thys-checksums
-            echo v3 > ~/isabelle-thys-checksums # Adding a tag to be able to enforce rebuilding
+            echo v5 > ~/isabelle-thys-checksums # Adding a tag to be able to enforce rebuilding
       - restore_cache:
           keys:
-            - v4-isabelle-heaps-@{isabelle}-@{os}-QRHL-{{ checksum "~/isabelle-thys-checksums" }}
+            - v5-isabelle-heaps-@{isabelle}-@{os}-QRHL-{{ checksum "~/isabelle-thys-checksums" }}
+            - v5-isabelle-heaps-@{isabelle}-@{os}-QRHL-
             - v4-isabelle-heaps-@{isabelle}-@{os}-QRHL-
             - v3-isabelle-heaps-@{isabelle}-@{os}-QRHL-
       - run:
@@ -104,7 +105,7 @@ jobs:
           paths:
             - ~/.isabelle
             - ~/qrhl-sha1sum
-          key: v4-isabelle-heaps-@{isabelle}-@{os}-QRHL-{{ checksum "~/isabelle-thys-checksums" }}
+          key: v5-isabelle-heaps-@{isabelle}-@{os}-QRHL-{{ checksum "~/isabelle-thys-checksums" }}
 
       # Download and cache dependencies
       - restore_cache:
