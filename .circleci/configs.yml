@@ -1,14 +1,10 @@
 pick: random
 
-# TODO test with different JDKs
-
 configs:
-  windows-jdk11:
+  windows-jdk12:
     os: windows
-    jdk: 11
-  windows-jdk15:
-    os: windows
-    jdk: 15
+    # We haven't configure downloading of JDKs in Windows, so we need to select the JDK that is preinstalled on Windows
+    jdk: 12
   linux-jdk11:
     os: linux
     jdk: 11
