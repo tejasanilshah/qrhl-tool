@@ -135,6 +135,20 @@ jobs:
           key: v1-dependencies-@{os}-{{ checksum "build.sbt" }}
 
       - run:
+          name: Setting up Java
+          shell: bash
+          command: |
+            case @{os} in
+              linux)
+                apt install --yes openjdk-@{jdk}-jdk
+                update-alternatives --set java /usr/lib/jvm/java-@{jdk}-openjdk-amd64/bin/java;;
+            esac
+
+            # Check if we have the right Java version
+            java -version
+            java -version |& grep -F 'version "@{jdkversionprefix}".' -q
+
+      - run:
           name: Running tests
           shell: bash
           command: |

@@ -3,12 +3,24 @@ pick: random
 # TODO test with different JDKs
 
 configs:
-  windows:
+  windows-jdk11:
     os: windows
-  linux:
+    jdk: 11
+  windows-jdk15:
+    os: windows
+    jdk: 15
+  linux-jdk11:
     os: linux
-  macos:
+    jdk: 11
+  linux-jdk15:
+    os: linux
+    jdk: 15
+  macos-jdk11:
     os: macos
+    jdk: 11
+  macos-jdk15:
+    os: macos
+    jdk: 15
 
 defaults:
   isabelle: return "2019"
@@ -25,3 +37,6 @@ defaults:
   win_or_unix: |
     if os=="windows": return "windows"
     return "unix"
+  jdkversionprefix: |
+    if jdk=="8": return "1.8"
+    if int(jdk)>=11: return str(int(jdk))
